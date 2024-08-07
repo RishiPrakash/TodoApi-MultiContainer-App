@@ -86,6 +86,8 @@
         
         <label for="dataInput">Enter Data:</label>
         <input type="text" id="dataInput" placeholder="Enter data to add">
+        <label for="typeInput">Enter Type:</label>
+        <input type="text" id="typeInput" placeholder="Enter type to categorize">
         <button id="getDataButton">Get Data</button>
         <button id="addDataButton">Add Data</button>
         <div id="message" class="message"></div>
@@ -107,12 +109,13 @@
         document.getElementById('addDataButton').addEventListener('click', async () => {
             try {
                 const dataInput = document.getElementById('dataInput').value;
+                const typeInput = document.getElementById('typeInput').value;
                 const response = await fetch('http://localhost:8081/add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ Name: dataInput })
+                    body: JSON.stringify({ Name: dataInput, type: typeInput })
                 });
                 const result = await response.json();
                 document.getElementById('message').innerText = 'Data added successfully.';

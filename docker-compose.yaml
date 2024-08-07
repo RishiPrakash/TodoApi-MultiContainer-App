@@ -13,7 +13,7 @@ services:
       - TodoApi
   backend:
     build: 
-      context: ./backend/TodoApi/TodoApi
+      context: ./backend/TodoApi
       dockerfile: Dockerfile
     ports:
       - "8081:3000"

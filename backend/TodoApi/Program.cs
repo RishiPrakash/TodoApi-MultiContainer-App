@@ -1,5 +1,8 @@
 ﻿using TodoApi;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Azure.Cosmos;
+using Microsoft.AspNetCore.Mvc;
+using System.Text.Json.Serialization;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,11 +20,11 @@ builder.Services.AddCors(options =>
 //here we only need 8080 for now, which is for frontend, but localhost:3000
 // is added just for example purpose
 
-//Adding database context to DI container
-//builder also contains DI container of Services
-builder.Services.AddDbContext<TodoDb>(opt => opt.UseInMemoryDatabase("TodoList"));
-builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddSingleton<IDbClient, TodoListDbClient>();
+builder.Services.AddSingleton<IService, TodoService>();
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 var app = builder.Build();
 
@@ -29,19 +32,38 @@ var app = builder.Build();
 app.UseCors("AllowLocalhost");
 
 app.MapGet("/", () => "Hello World!");
-app.MapGet("/get",async (TodoDb db) => { //Here also the lambda handler can get the param populated by DI Container
-    var todos = await db.Todos.ToListAsync();
+app.MapGet("/get", async (IService service) =>
+{ //Here also the lambda handler can get the param populated by DI Container
+    var todos = await service.GetAllAsync();
     return todos;
 });
-app.MapPost("/add", async (Todo todo, TodoDb db) =>
+app.MapPost("/add", async (IService service, Todo todo) =>
 {
-    db.Todos.Add(todo);
-    await db.SaveChangesAsync();
-    //Here Results is a factory for IResult which is
-    // an interface that represents the result of an HTTP operation
-    return Results.Created($"/get/{todo.Id}", todo);
-   
+    var addedItem = await service.AddItemAysnc(todo);
+
+    return Results.Created($"/get/{addedItem.id}", addedItem);
+
 });
 
 app.Run();
+
+
+public class Todo
+{
+    public string id { get; set; }
+    public string? Name { get; set; }
+
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public TodoType? type { get; set; }
+}
+
+public enum TodoType
+{
+    Work,
+    Health,
+    Wealth,
+    Family
+
+}
+
 
