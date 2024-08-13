@@ -15,7 +15,7 @@ COPY . .
 RUN dotnet publish -c Release -o /app
 
 # Use the official .NET Core runtime image as the final image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-bookworm-slim-amd64 AS runtime
 
 # Set the working directory inside the container
 WORKDIR /app

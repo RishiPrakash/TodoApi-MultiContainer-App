@@ -1,4 +1,5 @@
 using System.Net.Http.Headers;
+using Azure.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Linq;
@@ -8,13 +9,13 @@ public class TodoListDbClient : IDbClient
 {
     private readonly Container _todoListContainer;
 
-    private string connectionString = "AccountEndpoint=https://cosmos-nosql-db.documents.azure.com:443/;AccountKey=hereShouldBeYourAccountKey;";
+    private string cosmosDbEndpoint = "https://cosmos-nosql-db.documents.azure.com:443/";
     public TodoListDbClient()
     {   
         var cosmosClientOptions = new CosmosClientOptions {
             
         };
-        var cosmosClient = new CosmosClient(connectionString);
+        var cosmosClient = new CosmosClient(accountEndpoint: cosmosDbEndpoint, tokenCredential: new DefaultAzureCredential());
         _todoListContainer = cosmosClient.GetDatabase("Product").GetContainer("TodoList");
     }
 

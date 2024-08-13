@@ -127,3 +127,8 @@
 /Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/obj/Debug/net8.0/TodoApi.pdb
 /Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/obj/Debug/net8.0/TodoApi.genruntimeconfig.cache
 /Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/obj/Debug/net8.0/ref/TodoApi.dll
+/Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/bin/Debug/net8.0/Azure.Identity.dll
+/Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/bin/Debug/net8.0/Microsoft.Identity.Client.dll
+/Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/bin/Debug/net8.0/Microsoft.Identity.Client.Extensions.Msal.dll
+/Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/bin/Debug/net8.0/System.ClientModel.dll
