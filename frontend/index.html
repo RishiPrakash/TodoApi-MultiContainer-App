@@ -97,7 +97,7 @@
     <script>
         document.getElementById('getDataButton').addEventListener('click', async () => {
             try {
-                const response = await fetch('http://localhost:8081/get');
+                const response = await fetch('http://backend/get');
                 const data = await response.json();
                 document.getElementById('result').innerText = 'Data from backend: ' + JSON.stringify(data, null, 2);
             } catch (error) {
@@ -110,7 +110,7 @@
             try {
                 const dataInput = document.getElementById('dataInput').value;
                 const typeInput = document.getElementById('typeInput').value;
-                const response = await fetch('http://localhost:8081/add', {
+                const response = await fetch('http://backend/add', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

@@ -1,5 +1,5 @@
 # Use a lightweight Nginx image as the base
-FROM nginx:alpine
+FROM --platform=linux/amd64 nginx:alpine
 
 # Copy your HTML and JavaScript files into the default web root directory of Nginx
 COPY . /usr/share/nginx/html

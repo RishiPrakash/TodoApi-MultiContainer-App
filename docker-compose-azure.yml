@@ -1,9 +1,7 @@
-version: '3'
+version: '3.8'
 services:
   frontend:
-    build: 
-      context: ./frontend
-      dockerfile: Dockerfile
+    image: rishi90containerregistery.azurecr.io/todoapi-singlenode-multicontainer-app-frontend
     ports:
       - "8080:80"
     depends_on:
@@ -11,14 +9,14 @@ services:
     container_name: frontend
     networks:
       - TodoApi
+
   backend:
-    build: 
-      context: ./backend/TodoApi
-      dockerfile: Dockerfile
+    image: rishi90containerregistery.azurecr.io/todoapi-singlenode-multicontainer-app-backend
     ports:
       - "8081:3000"
     container_name: backend
     networks:
       - TodoApi
+
 networks:
   TodoApi:
