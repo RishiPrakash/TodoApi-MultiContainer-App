@@ -1,19 +1,24 @@
-version: '3.8'
 services:
+  proxy:
+    image: rishi90containerregistery.azurecr.io/todoapi-singlenode-multicontainer-app-proxy
+    ports:
+      - "80:80"
+    container_name: proxy
+    networks:
+      - TodoApi
   frontend:
     image: rishi90containerregistery.azurecr.io/todoapi-singlenode-multicontainer-app-frontend
     ports:
-      - "8080:80"
+      - "80"
     depends_on:
       - backend
     container_name: frontend
     networks:
       - TodoApi
-
   backend:
     image: rishi90containerregistery.azurecr.io/todoapi-singlenode-multicontainer-app-backend
     ports:
-      - "8081:3000"
+      - "3000"
     container_name: backend
     networks:
       - TodoApi
