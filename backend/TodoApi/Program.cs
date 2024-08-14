@@ -10,11 +10,16 @@ var builder = WebApplication.CreateBuilder(args);
 // CORS policy configuration
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("AllowLocalhost", builder =>
+    options.AddPolicy("AllowLocalhostAndAzureWebsites", builder =>
     {
-        builder.WithOrigins("http://localhost:3000", "http://localhost:8080")
-               .AllowAnyHeader()
-               .AllowAnyMethod();
+        builder.SetIsOriginAllowed(origin =>
+        {
+            // Allow if the origin starts with "http://localhost" or ends with ".azurewebsites.net"
+            return origin.StartsWith("http://localhost", StringComparison.OrdinalIgnoreCase) ||
+                origin.EndsWith(".azurewebsites.net", StringComparison.OrdinalIgnoreCase);
+        })
+        .AllowAnyHeader()
+        .AllowAnyMethod();
     });
 });
 //here we only need 8080 for now, which is for frontend, but localhost:3000
@@ -29,7 +34,7 @@ builder.Logging.AddConsole();
 var app = builder.Build();
 
 // Apply CORS middleware
-app.UseCors("AllowLocalhost");
+app.UseCors("AllowLocalhostAndAzureWebsites");
 
 app.MapGet("/", () => "Hello World!");
 app.MapGet("/get", async (IService service) =>

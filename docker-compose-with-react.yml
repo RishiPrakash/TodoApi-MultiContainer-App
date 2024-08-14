@@ -1,0 +1,26 @@
+services:
+  react-frontend:
+    build: 
+      context: ./react-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    container_name: react-frontend
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:8081=value
+    networks:
+      - TodoApi
+  backend:
+    build: 
+      context: ./backend/TodoApi
+      dockerfile: Dockerfile
+    ports:
+      - "8081:3000"
+    container_name: backend
+    networks:
+      - TodoApi
+      
+networks:
+  TodoApi:

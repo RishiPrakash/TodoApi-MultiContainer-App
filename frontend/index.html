@@ -95,9 +95,9 @@
     </div>
 
     <script>
+        const backendUrl = "https://todolistbackend-d7cta8fuhdhjf0ca.eastus-01.azurewebsites.net";
         document.getElementById('getDataButton').addEventListener('click', async () => {
             try {
-                const backendUrl = "/api";
                 const response = await fetch(`${backendUrl}/get`);
                 const data = await response.json();
                 document.getElementById('result').innerText = 'Data from backend: ' + JSON.stringify(data, null, 2);
@@ -111,7 +111,6 @@
             try {
                 const dataInput = document.getElementById('dataInput').value;
                 const typeInput = document.getElementById('typeInput').value;
-                const backendUrl = "/api";
                 const response = await fetch(`${backendUrl}/add`, {
                     method: 'POST',
                     headers: {
