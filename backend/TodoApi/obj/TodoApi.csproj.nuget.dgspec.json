@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/TodoApi.csproj": {}
+    "/Users/rishiprakash/Projects/TodoApi-MultiContainer-App/backend/TodoApi/TodoApi.csproj": {}
   },
   "projects": {
-    "/Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/TodoApi.csproj": {
+    "/Users/rishiprakash/Projects/TodoApi-MultiContainer-App/backend/TodoApi/TodoApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/TodoApi.csproj",
+        "projectUniqueName": "/Users/rishiprakash/Projects/TodoApi-MultiContainer-App/backend/TodoApi/TodoApi.csproj",
         "projectName": "TodoApi",
-        "projectPath": "/Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/TodoApi.csproj",
+        "projectPath": "/Users/rishiprakash/Projects/TodoApi-MultiContainer-App/backend/TodoApi/TodoApi.csproj",
         "packagesPath": "/Users/rishiprakash/.nuget/packages/",
-        "outputPath": "/Users/rishiprakash/Projects/TodoApi-SingleNode-MultiContainer-App/backend/TodoApi/obj/",
+        "outputPath": "/Users/rishiprakash/Projects/TodoApi-MultiContainer-App/backend/TodoApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/rishiprakash/.nuget/NuGet/NuGet.Config"
