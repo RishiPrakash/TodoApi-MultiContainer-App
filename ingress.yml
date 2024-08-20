@@ -6,13 +6,6 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: react-frontend
-            port:
-              number: 8080
       - path: /api
         pathType: Prefix
         backend:
@@ -20,3 +13,10 @@ spec:
             name: backend
             port:
               number: 8081
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: react-frontend
+            port:
+              number: 8080
