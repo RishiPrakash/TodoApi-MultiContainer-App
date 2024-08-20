@@ -35,14 +35,14 @@ var app = builder.Build();
 
 // Apply CORS middleware
 app.UseCors("AllowLocalhostAndAzureWebsites");
-
-app.MapGet("/", () => "Hello World!");
-app.MapGet("/get", async (IService service) =>
+var apiGroup = app.MapGroup("/api");
+apiGroup.MapGet("/", () => "Hello World!");
+apiGroup.MapGet("/get", async (IService service) =>
 { //Here also the lambda handler can get the param populated by DI Container
     var todos = await service.GetAllAsync();
     return todos;
 });
-app.MapPost("/add", async (IService service, Todo todo) =>
+apiGroup.MapPost("/add", async (IService service, Todo todo) =>
 {
     var addedItem = await service.AddItemAysnc(todo);
 

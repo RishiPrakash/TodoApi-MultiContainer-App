@@ -15,7 +15,7 @@ spec:
         app: react-frontend
     spec:
       containers:
-        image: react-frontend
+      - image: react-frontend
         name: react-frontend
         imagePullPolicy: IfNotPresent
         ports:
