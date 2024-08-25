@@ -15,7 +15,7 @@ spec:
         app: backend
     spec:
       containers:
-      - image: backend:latest
+      - image: backend:v1.0
         name: backend
         imagePullPolicy: IfNotPresent
         ports:

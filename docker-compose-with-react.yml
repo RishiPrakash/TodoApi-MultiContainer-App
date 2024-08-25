@@ -14,7 +14,7 @@ services:
     networks:
       - TodoApi
   backend:
-    image: backend
+    image: backend:v1.0
     build: 
       context: ./backend/TodoApi
       dockerfile: Dockerfile
