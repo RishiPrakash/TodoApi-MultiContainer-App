@@ -19,9 +19,10 @@ public class TodoListDbClient : IDbClient
         _todoListContainer = cosmosClient.GetDatabase("Product").GetContainer("TodoList");
     }
 
-    public async Task<ItemResponse<Todo>> AddAsync(Todo todoItem)
+    public async Task<Todo> AddAsync(Todo todoItem)
     {    
-        return await _todoListContainer.CreateItemAsync<Todo>(todoItem);
+        await _todoListContainer.CreateItemAsync<Todo>(todoItem);
+        return todoItem;
     }
 
     public async Task<List<Todo>> GetAllAsync()

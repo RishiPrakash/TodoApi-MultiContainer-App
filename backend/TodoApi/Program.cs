@@ -24,8 +24,14 @@ builder.Services.AddCors(options =>
 });
 //here we only need 8080 for now, which is for frontend, but localhost:3000
 // is added just for example purpose
+var environment = builder.Environment;
 
-builder.Services.AddSingleton<IDbClient, TodoListDbClient>();
+if(environment.IsDevelopment()){
+    builder.Services.AddSingleton<IDbClient, InMemoryTodoListClient>();
+}else{
+    builder.Services.AddSingleton<IDbClient, TodoListDbClient>();
+}
+
 builder.Services.AddSingleton<IService, TodoService>();
 
 builder.Logging.ClearProviders();

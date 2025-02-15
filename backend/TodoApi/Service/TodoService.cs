@@ -15,9 +15,9 @@ class TodoService : IService
             item.id = Guid.NewGuid().ToString();
             
             var itemResponse = await _dbClient.AddAsync(item);
-            if (itemResponse.StatusCode == System.Net.HttpStatusCode.Created)
+            if (itemResponse != null)
             {
-                return itemResponse.Resource;
+                return itemResponse;
             }
             throw new Exception("Failed to add the item");
         }
