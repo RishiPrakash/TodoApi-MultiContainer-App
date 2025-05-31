@@ -1,26 +1,27 @@
-import { useMsal, AuthenticatedTemplate } from '@azure/msal-react';
+import { useMsal, AuthenticatedTemplate, UnauthenticatedTemplate } from '@azure/msal-react';
 import { Container } from 'react-bootstrap';
+import { PublicEndpoint } from '../components/PublicEndpoint';
+import { AuthenticatedEndpoint } from '../components/AuthenticatedEndpoint';
 
-import { IdTokenData } from '../components/DataDisplay';
-
-/***
- * Component to detail ID token claims with a description for each claim. For more details on ID token claims, please check the following links:
- * ID token Claims: https://docs.microsoft.com/en-us/azure/active-directory/develop/id-tokens#claims-in-an-id-token
- * Optional Claims:  https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-optional-claims#v10-and-v20-optional-claims-set
- */
 export const Home = () => {
-    const { instance } = useMsal();
-    const activeAccount = instance.getActiveAccount();
-
     return (
-        <>
+        <Container>
+            <h2 className="text-center mb-4">API Demo</h2>
+            
+            {/* Public endpoint - always visible */}
+            <PublicEndpoint />
+            
+            {/* Authenticated endpoint - only visible when signed in */}
             <AuthenticatedTemplate>
-                {activeAccount ? (
-                    <Container>
-                        <IdTokenData idTokenClaims={activeAccount.idTokenClaims} />
-                    </Container>
-                ) : null}
+                <AuthenticatedEndpoint />
             </AuthenticatedTemplate>
-        </>
+            
+            {/* Message shown when not signed in */}
+            <UnauthenticatedTemplate>
+                <div className="alert alert-info mt-3">
+                    Please sign in to view the authenticated endpoint data.
+                </div>
+            </UnauthenticatedTemplate>
+        </Container>
     );
 };
